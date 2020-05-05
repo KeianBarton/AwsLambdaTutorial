@@ -163,3 +163,27 @@ exports.handler = async (event, context) => {
 ```
 
 You can test by testing with an empty event (call it `MyEmptyEvent`) - you should see a backup has been created in DynamoDB.
+
+## Uploading a Lambda Function
+
+- Write code and save as file
+- Package code file and dependencies in zip
+- Upload using console or AWS CLI (https://aws.amazon.com/cli/) - you can replace `zip-file` with a S3 bucket location (`--code` paramter):
+
+```cmd
+aws lambda create-function \
+--region us-east-2 \
+--function-name MyNewLambda \
+--zip-file c://my_package.zip \
+--role arn:aws:iam::account-id:role/my_lambda-role \
+-- handler hello_python.my_handler \
+--runtime python3.6 \
+--timeout 15 \
+--memory-size 512
+```
+
+https://docs.aws.amazon.com/cli/latest/reference/lambda/create-function.html
+
+## Introducing CloudWatch
+
+
